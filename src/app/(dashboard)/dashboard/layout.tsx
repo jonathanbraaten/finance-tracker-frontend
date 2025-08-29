@@ -1,3 +1,5 @@
+import { Providers } from 'app/providers';
+
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -6,7 +8,9 @@ export default function DashboardLayout({
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <Providers>
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
