@@ -8,12 +8,12 @@ export default function DashboardLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="text-sm">
         <section className="h-screen flex">
           <Sidebar />
           <div className="flex flex-col  grow">
             <Header />
-            <main className="grow">{children}</main>
+            <main className="grow px-2 bg-gray-100/20">{children}</main>
           </div>
         </section>
       </body>

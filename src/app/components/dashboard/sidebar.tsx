@@ -55,7 +55,7 @@ export default function Sidebar() {
   };
 
   return (
-    <nav className="border-r border-gray-200 text-sm">
+    <nav className="border-r border-gray-200  px-2">
       <ul>
         {navItem['top'].map((l) => (
           <li className="flex gap-1" key={l.id}>
