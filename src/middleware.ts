@@ -2,11 +2,23 @@ import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 
 export default function middleware(request: NextRequest) {
+  /**
+   * Cookie.
+   */
   const hasAuth = request.cookies.has('.finance_auth');
   const { pathname } = request.nextUrl;
+
+  /**
+   * Authentication pages.
+   */
   const isAuthPage =
     pathname.startsWith('/login') || pathname.startsWith('/register');
+
+  /**
+   * Protected pages.
+   */
   const isProtected = pathname.startsWith('/dashboard');
+
   if (!hasAuth && isProtected) {
     return NextResponse.redirect(new URL('/register', request.url));
   }
