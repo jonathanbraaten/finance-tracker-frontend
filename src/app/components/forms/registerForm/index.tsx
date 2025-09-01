@@ -19,8 +19,8 @@ import { registerSchema, RegisterSchema } from 'app/components/forms/schemas';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { API_URL } from 'lib/api';
-import { section } from 'framer-motion/client';
+import { API_URL_PUBLIC } from 'lib/env';
+
 import Link from 'next/link';
 
 export default function RegisterForm() {
@@ -43,7 +43,7 @@ export default function RegisterForm() {
     if (Object.keys(errors).length > 0) return;
 
     try {
-      const response = await fetch(`${API_URL}/accounts/signup`, {
+      const response = await fetch(`${API_URL_PUBLIC}/accounts/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

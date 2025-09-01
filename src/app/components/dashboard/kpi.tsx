@@ -14,35 +14,52 @@
 	5.	Recent Transactions
 	•	Last 5 items (category, amount, status)
  */
+import { Wallet, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
 
-import { div } from 'framer-motion/client';
+import { Transaction } from 'lib/types/transaction';
 
-export default function KpiCard() {
-  const mockData = [
+export default function KpiCard({ tx }: { tx: Transaction[] }) {
+  const expenses = tx
+    .filter(
+      (v) =>
+        v.transaction_type === 'expense' && v.transaction_status === 'cleared',
+    )
+    .reduce((acc, cur) => (acc += cur.amount), 0);
+  const income = tx
+    .filter(
+      (v) =>
+        v.transaction_type === 'income' && v.transaction_status === 'cleared',
+    )
+    .reduce((acc, cur) => (acc += cur.amount), 0);
+  const data = [
     {
-      key: 'currentBalance',
+      id: 1,
       title: 'Current Balance',
-      total: 5200,
-      changeVsLastMonth: 150, // positive means ▲, negative ▼
+      total: income - expenses,
+      icon: <Wallet size={16} />,
     },
     {
-      key: 'incomeThisMonth',
+      id: 2,
       title: 'Income',
-      total: 3200,
-      percentChangeVsLastMonth: 8.5, // positive means ▲, negative ▼
+      total: income,
+      icon: <ArrowUpCircle size={16} />,
     },
     {
-      key: 'expensesThisMonth',
+      id: 3,
       title: 'Expenses',
-      total: 2100,
-      percentChangeVsLastMonth: -3.2, // positive means ▲, negative ▼
+      total: expenses,
+      icon: <ArrowDownCircle size={16} />,
     },
   ];
   return (
     <>
-      {mockData.map((v) => (
-        <div className="border border-gray-200 p-1 rounded-md" key={v.key}>
-          <p>{v.title}</p>
+      {data.map((v) => (
+        <div className="border border-gray-200 p-1 rounded-md" key={v.id}>
+          <div className="flex items-center gap-1 text-sm">
+            <span className="bg-gray-100 rounded-full p-1">{v.icon}</span>{' '}
+            <p>{v.title}</p>
+          </div>
+
           <p>{v.total}</p>
         </div>
       ))}

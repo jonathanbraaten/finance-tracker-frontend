@@ -4,10 +4,10 @@ import createInput from '../components';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, LoginSchema } from 'app/components/forms/schemas';
-import { API_URL } from 'lib/api';
+import { API_URL_PUBLIC } from 'lib/env';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { section } from 'framer-motion/client';
+
 import Link from 'next/link';
 
 export default function LoginForm() {
@@ -23,7 +23,7 @@ export default function LoginForm() {
     if (Object.keys(errors).length > 0) return;
 
     try {
-      const response = await fetch(`${API_URL}/accounts/login`, {
+      const response = await fetch(`${API_URL_PUBLIC}/accounts/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {
