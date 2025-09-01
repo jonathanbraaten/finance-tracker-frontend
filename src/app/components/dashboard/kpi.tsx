@@ -59,8 +59,7 @@ export default function KpiCard({ tx }: { tx: Transaction[] }) {
             <span className="bg-gray-100 rounded-full p-1">{v.icon}</span>{' '}
             <p>{v.title}</p>
           </div>
-
-          <p>{v.total}</p>
+          <span className="p-1">$ {v.total}</span>
         </div>
       ))}
     </>
