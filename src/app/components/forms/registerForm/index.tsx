@@ -20,6 +20,8 @@ import { registerSchema, RegisterSchema } from 'app/components/forms/schemas';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { API_URL } from 'lib/api';
+import { section } from 'framer-motion/client';
+import Link from 'next/link';
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -64,24 +66,27 @@ export default function RegisterForm() {
   }
 
   return (
-    <form
-      className="flex flex-col gap-1  max-w-xs w-full"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      {createInput(register, 'first_name', 'First name', errors)}
-      {createInput(register, 'last_name', 'Last name', errors)}
-      {createInput(register, 'email', 'Email', errors)}
-      {createInput(register, 'password', 'Password', errors)}
+    <section className=" max-w-xs w-full">
+      <form className="flex flex-col gap-1" onSubmit={handleSubmit(onSubmit)}>
+        {createInput(register, 'first_name', 'First name', errors)}
+        {createInput(register, 'last_name', 'Last name', errors)}
+        {createInput(register, 'email', 'Email', errors)}
+        {createInput(register, 'password', 'Password', errors)}
 
-      <button
-        className="bg-black text-white rounded-md my-3 py-1"
-        type="submit"
-      >
-        Submit
-      </button>
-      <label className="min-h-[2vh] px-1" htmlFor={`error-${error}`}>
-        {error && <p className="text-red-600 text-xs">{error}</p>}
-      </label>
-    </form>
+        <button
+          className="bg-black text-white rounded-md my-3 py-1"
+          type="submit"
+        >
+          Submit
+        </button>
+        <label className="min-h-[2vh] px-1" htmlFor={`error-${error}`}>
+          {error && <p className="text-red-600 text-xs">{error}</p>}
+        </label>
+      </form>
+      <Link className="flex gap-1 text-xs" href={'/login'}>
+        <span> Already have an account?</span>
+        <span className="text-blue-500 underline">Log in</span>
+      </Link>
+    </section>
   );
 }
