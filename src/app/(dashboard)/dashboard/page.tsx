@@ -1,3 +1,4 @@
+import Chart from 'app/components/dashboard/charts';
 import KpiCard from 'app/components/dashboard/kpi';
 
 import { API_URL } from 'lib/env';
@@ -20,8 +21,13 @@ export default async function Dashboard() {
   const tx = await getTransactions();
 
   return (
-    <div className="grid grid-cols-3 gap-2">
-      <KpiCard tx={tx} />
+    <div className="flex flex-col ">
+      <div className="grid grid-cols-3 gap-2">
+        <KpiCard tx={tx} />
+      </div>
+      <div className="my-auto w-full border border-gray-200 p-1 rounded-md h-[50vh]">
+        <Chart tx={tx} />
+      </div>
     </div>
   );
 }
