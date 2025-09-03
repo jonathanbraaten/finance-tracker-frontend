@@ -65,7 +65,16 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
   }
 
   return (
-    <Table selectionMode="single" aria-label="Transactions">
+    <Table
+      shadow="none"
+      radius="sm"
+      selectionMode="single"
+      aria-label="Transactions"
+      classNames={{
+        base: 'bg-transparent',
+        wrapper: 'bg-transparent',
+      }}
+    >
       <TableHeader columns={columns}>
         {(col) => (
           <TableColumn
@@ -77,7 +86,7 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
         )}
       </TableHeader>
 
-      <TableBody items={rows}>
+      <TableBody items={rows} emptyContent={'No rows to display.'}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => (
