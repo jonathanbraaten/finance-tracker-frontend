@@ -72,7 +72,7 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
       aria-label="Transactions"
       classNames={{
         base: 'bg-transparent',
-        wrapper: 'bg-transparent',
+        wrapper: 'bg-white p-0 border border-gray-100',
       }}
     >
       <TableHeader columns={columns}>
