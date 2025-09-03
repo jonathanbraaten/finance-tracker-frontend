@@ -44,10 +44,10 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
   /**
    * Transaction handler.
    */
-  async function transactionHandler(id: string, action: 'update' | 'delete') {
+  async function deleteTx(id: string) {
     try {
       const response = await fetch(`${API_URL_PUBLIC}/transactions/${id}`, {
-        method: action === 'delete' ? 'DELETE' : 'PATCH',
+        method: 'DELETE',
         credentials: 'include',
       });
 
@@ -86,7 +86,7 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
                   row={item}
                   //@ts-expect-error
                   columnKey={columnKey}
-                  onAction={transactionHandler}
+                  onAction={deleteTx}
                 />
               </TableCell>
             )}
