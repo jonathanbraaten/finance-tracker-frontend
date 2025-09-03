@@ -8,6 +8,9 @@ type Props = {
   onAction: (id: string) => void;
 };
 
+/**
+ * Types.
+ */
 type Row = {
   id: number;
   category: string;
@@ -16,22 +19,41 @@ type Row = {
   occurred: string;
 };
 
+type Key = keyof Row | 'actions';
+
+/**
+ * Colors.
+ */
 const statusColorMap = {
   cleared: 'success',
   failed: 'danger',
   pending: 'warning',
 } as const;
 
-type Key = keyof Row | 'actions';
-
 export default function RenderCell({ row, columnKey, onAction }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const cellValue = row[columnKey as keyof Row];
+
+  /**
+   * Open confirmation.
+   */
   const openConfirm = () => setConfirmDelete(true);
-  const abortConfirm = () => setConfirmDelete(false);
+
+  /**
+   * Close confirmation.
+   */
+  const closeConfirm = () => setConfirmDelete(false);
+
+  /**
+   * Confirm delete.
+   */
   const confirmDeleteNow = (id: string) => {
     onAction(id);
   };
+
+  /**
+   * Column keys
+   */
   switch (columnKey) {
     case 'category':
       return <div>{row.category}</div>;
@@ -55,7 +77,7 @@ export default function RenderCell({ row, columnKey, onAction }: Props) {
             <Tooltip content="Abort">
               <span
                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                onClick={abortConfirm}
+                onClick={closeConfirm}
               >
                 <X size={16} />
               </span>
