@@ -1,6 +1,7 @@
 import Header from 'app/components/dashboard/header';
 import Sidebar from 'app/components/dashboard/sidebar';
 import { Providers } from 'app/providers';
+
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -8,7 +9,7 @@ export default function DashboardLayout({
 }>) {
   return (
     <Providers>
-      <section className="h-screen flex">
+      <section className="h-screen flex text-md">
         <Sidebar />
         <div className="flex flex-col  grow">
           <Header />
