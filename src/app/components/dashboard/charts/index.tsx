@@ -31,6 +31,7 @@ export default function Chart({ tx }: { tx: Transaction[] }) {
   for (const t of tx) {
     if (t.transaction_status !== 'cleared') continue;
     const m = new Date(t.occurred_at).getUTCMonth(); // 0..11
+    console.log(m);
     if (t.transaction_type === 'income') income[m] += t.amount;
     if (t.transaction_type === 'expense') expenses[m] += t.amount;
   }
@@ -52,7 +53,7 @@ export default function Chart({ tx }: { tx: Transaction[] }) {
         type: 'bar',
         data: income,
         backgroundStyle: {
-          color: 'orange',
+          col3or: 'orange',
         },
       },
       {

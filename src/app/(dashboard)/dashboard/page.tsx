@@ -8,13 +8,16 @@ import { cookies } from 'next/headers';
 async function getData() {
   const cookie = (await cookies()).toString();
   async function getTransactions(): Promise<Transaction[]> {
-    const response = await fetch(`${API_URL}/transactions?year=2025&from=13`, {
-      credentials: 'include',
-      headers: {
-        Cookie: cookie,
+    const response = await fetch(
+      `${API_URL}/transactions?year=2025&from=1&to=12`,
+      {
+        credentials: 'include',
+        headers: {
+          Cookie: cookie,
+        },
+        cache: 'no-store',
       },
-      cache: 'no-store',
-    });
+    );
     return response.json();
   }
 
