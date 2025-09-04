@@ -4,7 +4,7 @@ import { Transaction } from 'lib/types/transaction';
 import { API_URL_PUBLIC } from 'lib/env';
 import { useRouter } from 'next/navigation';
 import RenderCell from './components/cell';
-import React, { useState } from 'react';
+
 import {
   Table,
   TableHeader,
@@ -93,7 +93,7 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
               <TableCell>
                 <RenderCell
                   row={item}
-                  //@ts-expect-error
+                  //@ts-ignore
                   columnKey={columnKey}
                   onAction={deleteTx}
                 />

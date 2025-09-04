@@ -1,12 +1,6 @@
-import { ChipProps } from '@heroui/react';
 import { Chip, Tooltip } from '@heroui/react';
-import { Pen, Pencil, Trash, X, Check } from 'lucide-react';
+import { Pencil, Trash, X, Check } from 'lucide-react';
 import { useState } from 'react';
-type Props = {
-  row: Row;
-  columnKey: Key;
-  onAction: (id: string) => void;
-};
 
 /**
  * Types.
@@ -20,7 +14,11 @@ type Row = {
 };
 
 type Key = keyof Row | 'actions';
-
+type Props = {
+  row: Row;
+  columnKey: Key;
+  onAction: (id: string) => void;
+};
 /**
  * Colors.
  */
