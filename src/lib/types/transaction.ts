@@ -9,6 +9,11 @@ export type Transaction = {
   created_at: Date;
   occurred_at: Date;
 };
+export type Budget = {
+  amount: number;
+  period_month: number;
+  period_year: number;
+};
 
 export type User = {
   first_name: string;

@@ -17,7 +17,7 @@ async function getUser(): Promise<User> {
 export default async function Header() {
   const user = await getUser();
   return (
-    <header className="flex justify-between px-2  border-b border-gray-200 py-3">
+    <header className="flex justify-between px-10  border-b border-gray-200 py-3">
       <div></div>
 
       <Avatar name={user.first_name} />

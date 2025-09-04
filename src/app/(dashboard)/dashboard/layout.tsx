@@ -13,7 +13,7 @@ export default function DashboardLayout({
         <Sidebar />
         <div className="flex flex-col  grow">
           <Header />
-          <section className="grow px-2 bg-cyan-100/10">{children}</section>
+          <section className="grow px-10 bg-cyan-100/10">{children}</section>
         </div>
       </section>
     </Providers>
