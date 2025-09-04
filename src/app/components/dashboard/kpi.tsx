@@ -25,7 +25,7 @@ export default function KpiCard({ tx, budget }: Props) {
         v.transaction_type === 'income' && v.transaction_status === 'cleared',
     )
     .reduce((acc, cur) => (acc += cur.amount), 0);
-
+  const calculateBudget = budget.amount ?? 0;
   const data = [
     {
       id: 1,
@@ -43,13 +43,13 @@ export default function KpiCard({ tx, budget }: Props) {
     {
       id: 3,
       title: 'Budget',
-      total: numberFormat(budget.amount),
+      total: numberFormat(calculateBudget),
       icon: <HandCoins size={16} />,
     },
     {
       id: 4,
       title: 'Remaining budget',
-      total: numberFormat(budget.amount - expenses),
+      total: calculateBudget > 0 ? numberFormat(calculateBudget - expenses) : 0,
       icon: <ArrowUpCircle size={16} />,
     },
   ];
