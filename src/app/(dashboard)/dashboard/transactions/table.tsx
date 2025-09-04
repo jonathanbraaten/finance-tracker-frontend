@@ -93,7 +93,7 @@ export default function TransactionTable({ tx }: { tx: Transaction[] }) {
               <TableCell>
                 <RenderCell
                   row={item}
-                  //@ts-ignore
+                  // @ts-expect-error: columnKey type depends on TableColumn definition
                   columnKey={columnKey}
                   onAction={deleteTx}
                 />
