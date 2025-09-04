@@ -1,19 +1,3 @@
-/* 📊 Core Dashboard Cards
-	1.	Current Balance
-	•	Total balance
-	•	Change vs. last month (▲/▼)
-	2.	Income (This Month)
-	•	Total credited this month
-	•	% change vs. last month
-	3.	Expenses (This Month)
-	•	Total debited this month
-	•	% change vs. last month
-	4.	Budget Remaining
-	•	Progress bar (% of monthly budget used)
-	•	Warning badge if >75% used
-	5.	Recent Transactions
-	•	Last 5 items (category, amount, status)
- */
 import {
   Wallet,
   ArrowUpCircle,

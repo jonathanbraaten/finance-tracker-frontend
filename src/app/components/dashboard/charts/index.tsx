@@ -2,7 +2,20 @@
 import * as echarts from 'echarts';
 import { Transaction } from 'lib/types/transaction';
 import { useEffect, useRef } from 'react';
-
+const month = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 export default function Chart({ tx }: { tx: Transaction[] }) {
   /**
    * Container.
@@ -12,21 +25,15 @@ export default function Chart({ tx }: { tx: Transaction[] }) {
   /**
    * Data.
    */
-  const income = tx
-    .filter(
-      (v) =>
-        v.transaction_type === 'income' && v.transaction_status === 'cleared',
-    )
-    .map((v) => v.amount)
-    .map((v) => v);
+  const income = Array(12).fill(0);
+  const expenses = Array(12).fill(0);
 
-  const expense = tx
-    .filter(
-      (v) =>
-        v.transaction_type === 'expense' && v.transaction_status === 'cleared',
-    )
-    .map((v) => v.amount)
-    .map((v) => v);
+  for (const t of tx) {
+    if (t.transaction_status !== 'cleared') continue;
+    const m = new Date(t.occurred_at).getUTCMonth(); // 0..11
+    if (t.transaction_type === 'income') income[m] += t.amount;
+    if (t.transaction_type === 'expense') expenses[m] += t.amount;
+  }
 
   /**
    * Echarts option.
@@ -36,7 +43,7 @@ export default function Chart({ tx }: { tx: Transaction[] }) {
     legend: { data: ['Income', 'Expenses'] },
     xAxis: {
       type: 'category',
-      data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      data: month.map((v) => v),
     },
     yAxis: { type: 'value' },
     series: [
@@ -51,7 +58,7 @@ export default function Chart({ tx }: { tx: Transaction[] }) {
       {
         name: 'Expenses',
         type: 'bar',
-        data: expense,
+        data: expenses,
       },
     ],
   };
